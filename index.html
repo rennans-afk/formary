@@ -166,14 +166,77 @@ span {
   }
 
 }
+#musicPlayer{
+  position:fixed;
+  top:20px;
+  right:20px;
 
+  width:320px;
+  padding:10px;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(8px);
+
+  border-radius:15px;
+
+  box-shadow:0 0 15px rgba(0,0,0,.3);
+
+  cursor:pointer;
+
+  z-index:99999;
+}
+
+#musicPlayer img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.musicInfo{
+  flex:1;
+}
+
+.musicTitle{
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.musicArtist{
+  color:#ccc;
+  font-size:14px;
+}
+
+#playIcon{
+  color:white;
+  font-size:28px;
+  font-weight:bold;
+}
 </style>
 </head>
 <body>
 
 <audio id="bgMusic">
-  <source src="Aliança.opus" type="audio/ogg">
+    <source src="Aliança.opus" type="audio/ogg">
 </audio>
+
+<div id="musicPlayer" onclick="toggleMusic()">
+
+    <img src="player.png" alt="Player">
+
+    <div class="musicInfo">
+        <div class="musicTitle">Aliança</div>
+        <div class="musicArtist">Sua música ❤️</div>
+    </div>
+
+    <div id="playIcon">▶</div>
+
+</div>
 <br><br>
 <form> 
 <div class="wrapper">
@@ -235,9 +298,11 @@ function startRoseRain() {
 
   const music = document.getElementById("bgMusic");
 
-  music.pause();
+ music.pause();
+	music.currentTime = 0;
 
-  music.currentTime = 0; // volta para o início
+	document.getElementById("playIcon")
+		.innerHTML = "▶";
 
 }
 
@@ -263,7 +328,13 @@ function check() {
 
       rosesStarted = true;
 
-      document.getElementById("bgMusic").play();
+      const music =
+	document.getElementById("bgMusic");
+
+	music.play();
+
+	document.getElementById("playIcon")
+	.innerHTML = "⏸";
 
 setTimeout(() => {
 
@@ -282,6 +353,29 @@ setTimeout(() => {
     rosesStarted = false;
 
   }
+
+}
+	function toggleMusic(){
+
+    const music =
+      document.getElementById("bgMusic");
+
+    const icon =
+      document.getElementById("playIcon");
+
+    if(music.paused){
+
+        music.play();
+
+        icon.innerHTML = "⏸";
+
+    }else{
+
+        music.pause();
+
+        icon.innerHTML = "▶";
+
+    }
 
 }
 
