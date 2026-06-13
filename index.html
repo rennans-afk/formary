@@ -1,385 +1,488 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
-<title>For you</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You ❤️</title>
+
 <style>
-@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
 
-@-webkit-keyframes throb{
-  0%{
-    -webkit-transform: scale(1);
-	}
-  35%{
-	  -webkit-transform: scale(1.2);
-	}
-	85%{
-	  -webkit-transform: scale(1);
-	}		
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-  display: table;
-  width: 100%;
-  height: 100vmin;
-  table-layout: fixed;
-}
+body{
 
-body {
+    font-family:'Shadows Into Light',cursive;
 
+    min-height:100vh;
 
-  display: table-cell;
-  vertical-align: bottom;
-  font-family: Shadows Into Light;
-  color: #fcfafa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-  background-image:
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+      rgba(0,0,0,.35),
+      rgba(0,0,0,.35)
+    ),
     url("fundo.jpeg");
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+    background-size:cover;
+    background-position:center;
 }
 
-.wrapper {
-  width: 90vmin;
-  height: 90vmin;
-  position: relative;
-  margin: 5vmin auto;
+.wrapper{
+    position:relative;
+    width:400px;
+    height:350px;
 }
 
-div.throb {
-  -webkit-animation: throb 1.5s infinite;
-  animation: throb 1.5s infinite;
-  animation-delay: 0.8s;
+/* CORAÇÃO */
+
+.circle{
+
+    width:140px;
+    height:140px;
+
+    background:#202330;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-size:70px;
+
+    position:absolute;
+
+    transition:.8s;
 }
 
-input[type="checkbox"] {
-  display: none !important;
+.left{
+    left:0;
+    top:0;
 }
 
-input[type="checkbox"] + label {
-  width: 30vmin; height: 30vmin;
-  line-height: 30vmin;
-  display: inline-block;
-  position: absolute;
-  font-size: 30vmin;
-  text-align: center;
-  transition: all 1s ease;
+.right{
+    right:0;
+    top:0;
 }
 
-label {
-  text-shadow: 3vmin 3vmin 10vmin rgba(0,0,0,0.5);
-}
-  label:hover {
-    color: #cf1313;
-    cursor: pointer;
-  }
+.bottom{
 
-#ck1 + label,
-#ck2 + label {
-  border-radius: 50%;
-  top: 0;
-}
+    left:50%;
+    bottom:0;
 
-#ck1:checked + label,
-#ck2:checked + label,
-#ck3:checked + label {
-  background: #cf1313;
-  font-size: 0;
-  transition: all 1s ease;
-}
-
-#ck1 + label {
-  left: 0;
-}
-
-#ck2 + label {
-  right: 10vmin;
-}
-
-#ck1:checked + label,
-#ck2:checked + label {
-  width: 54vmin; height: 54vmin;
-  border-radius: 50%;
-  line-height: 54vmin;
-}
-
-#ck2:checked + label {
-  right: 0;
-}
-
-#ck3 + label {
-  bottom: 5vmin; left: 50%;
-  margin: 0 -9vmin;
-}
-
-#ck3:checked + label {
-  width: 49.5vmin; height: 49.5vmin;
-  bottom: 17.28vmin; left: 29.16vmin;
-  transform: rotate(45deg);
-  line-height: 4.86vmin;
-}
-
-span {
-  display: inline-block;
-  text-align: left;
-  position: absolute;
-  bottom: 0vmin; left: 0vmin;
-  margin-bottom: -3vmin;
-  font-size: 6vmin;
-  color: #999;
-}
-/* Pétalas de rosa */
-
-.petal {
-  position: fixed;
-  top: -50px;
-  pointer-events: none;
-  z-index: 9999;
-  font-size: 24px;
-  animation: fall linear forwards;
-}
-
-@keyframes fall {
-
-  0% {
     transform:
-      translateY(0)
-      translateX(0)
-      rotate(0deg);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  100% {
-    transform:
-      translateY(110vh)
-      translateX(var(--drift))
-      rotate(720deg);
-    opacity: 0;
-  }
-
-}
-#musicPlayer{
-  position:fixed;
-  top:20px;
-  right:20px;
-
-  width:320px;
-  padding:10px;
-
-  display:flex;
-  align-items:center;
-  gap:12px;
-
-  background:rgba(0,0,0,.75);
-  backdrop-filter:blur(8px);
-
-  border-radius:15px;
-
-  box-shadow:0 0 15px rgba(0,0,0,.3);
-
-  cursor:pointer;
-
-  z-index:99999;
+    translateX(-50%)
+    rotate(45deg);
 }
 
-#musicPlayer img{
-  width:70px;
-  height:70px;
-  object-fit:cover;
-  border-radius:10px;
+.bottom span{
+    transform:rotate(-45deg);
 }
 
-.musicInfo{
-  flex:1;
+.active{
+    background:#cf1313;
 }
 
-.musicTitle{
-  color:white;
-  font-size:18px;
-  font-weight:bold;
+.active.bottom{
+    width:200px;
+    height:200px;
 }
 
-.musicArtist{
-  color:#ccc;
-  font-size:14px;
+/* PLAYER */
+
+.player{
+
+    position:fixed;
+
+    top:30px;
+    right:30px;
+
+    width:500px;
+    height:220px;
+
+    display:flex;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    backdrop-filter:blur(20px);
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 8px 32px rgba(0,0,0,.35);
 }
 
-#playIcon{
-  color:white;
-  font-size:28px;
-  font-weight:bold;
+.cover{
+
+    width:180px;
+    height:180px;
+
+    border-radius:20px;
+
+    object-fit:cover;
 }
+
+.info{
+
+    flex:1;
+
+    padding-left:20px;
+
+    color:white;
+}
+
+.title{
+
+    font-size:34px;
+    font-weight:bold;
+}
+
+.artist{
+
+    font-size:22px;
+
+    opacity:.8;
+}
+
+.progress{
+
+    width:100%;
+    margin-top:20px;
+}
+
+.controls{
+
+    display:flex;
+
+    justify-content:center;
+    gap:30px;
+
+    margin-top:25px;
+}
+
+.controls button{
+
+    background:none;
+    border:none;
+
+    color:white;
+
+    font-size:35px;
+
+    cursor:pointer;
+}
+
+.time{
+
+    display:flex;
+    justify-content:space-between;
+
+    color:white;
+
+    margin-top:5px;
+}
+
+/* ROSAS */
+
+.petal{
+
+    position:fixed;
+
+    top:-50px;
+
+    z-index:9999;
+
+    pointer-events:none;
+
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+
 </style>
 </head>
+
 <body>
 
 <audio id="bgMusic">
     <source src="Aliança.opus" type="audio/ogg">
 </audio>
 
-<div id="musicPlayer" onclick="toggleMusic()">
+<div class="player">
 
-    <img src="player.png" alt="Player">
+    <img
+      src="player1.png"
+      class="cover">
 
-    <div class="musicInfo">
-        <div class="musicTitle">Aliança</div>
-        <div class="musicArtist">Sua música ❤️</div>
+    <div class="info">
+
+        <div class="title">
+            Aliança
+        </div>
+
+        <div class="artist">
+            Sua música ❤️
+        </div>
+
+        <input
+        type="range"
+        value="0"
+        class="progress"
+        id="progress">
+
+        <div class="time">
+
+            <span id="current">
+                0:00
+            </span>
+
+            <span id="duration">
+                0:00
+            </span>
+
+        </div>
+
+        <div class="controls">
+
+            <button
+            onclick="toggleMusic()"
+            id="playBtn">
+                ▶
+            </button>
+
+        </div>
+
     </div>
 
-    <div id="playIcon">▶</div>
-
 </div>
-<br><br>
-<form> 
+
 <div class="wrapper">
-  <input type="checkbox" id="ck1" onClick="check()"/>
-  <label for="ck1">I</label>
-  <input type="checkbox" id="ck2" onClick="check()"/>
-  <label for="ck2">love</label>
-  <input type="checkbox" id="ck3" onClick="check()"/>
-  <label for="ck3">you</label>
-  <span id="color"></span>
+
+    <div class="circle left"
+    onclick="activate(1)">
+    I
+    </div>
+
+    <div class="circle right"
+    onclick="activate(2)">
+    love
+    </div>
+
+    <div class="circle bottom"
+    onclick="activate(3)">
+        <span>you</span>
+    </div>
+
 </div>
-</form>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-function createPetal() {
 
-  const petal = document.createElement("div");
+const music =
+document.getElementById("bgMusic");
 
-  petal.className = "petal";
+const progress =
+document.getElementById("progress");
 
-  /* Emoji de rosa */
-  petal.innerHTML = "🌹";
+const playBtn =
+document.getElementById("playBtn");
 
-  petal.style.left =
-    Math.random() * window.innerWidth + "px";
-
-  petal.style.fontSize =
-    (18 + Math.random() * 30) + "px";
-
-  petal.style.animationDuration =
-    (5 + Math.random() * 4) + "s";
-
-  petal.style.setProperty(
-    "--drift",
-    (Math.random() * 300 - 150) + "px"
-  );
-
-  document.body.appendChild(petal);
-
-  setTimeout(() => {
-    petal.remove();
-  }, 40000);
-}
-
-function startRoseRain() {
-
-  let count = 1;
-
-  const rain = setInterval(() => {
-
-    createPetal();
-
-    count++;
-
-    if (count >= 800) {
-
-  clearInterval(rain);
-
-  const music = document.getElementById("bgMusic");
-
- music.pause();
-	music.currentTime = 0;
-
-	document.getElementById("playIcon")
-		.innerHTML = "▶";
-
-}
-
-  }, 150);
-
-}
-
+let clicked = [false,false,false];
 let rosesStarted = false;
 
-function check() {
+function activate(index){
 
-  if (
-    document.forms[0].elements[0].checked &&
-    document.forms[0].elements[1].checked &&
-    document.forms[0].elements[2].checked
-  ) {
+    clicked[index-1] = true;
 
-    if (!$('.wrapper').hasClass('throb')) {
-      $('.wrapper').addClass('throb');
+    document
+    .querySelectorAll(".circle")
+    [index-1]
+    .classList.add("active");
+
+    if(
+      clicked[0] &&
+      clicked[1] &&
+      clicked[2]
+    ){
+
+        if(music.paused){
+
+            music.play();
+
+            playBtn.innerHTML="⏸";
+
+        }
+
+        if(!rosesStarted){
+
+            rosesStarted=true;
+
+            setTimeout(
+            startRoseRain,
+            5000);
+
+        }
     }
-
-    if (!rosesStarted) {
-
-      rosesStarted = true;
-
-      const music =
-	document.getElementById("bgMusic");
-
-	music.play();
-
-	document.getElementById("playIcon")
-	.innerHTML = "⏸";
-
-setTimeout(() => {
-
-  startRoseRain();
-
-}, 5000);
-
-    }
-
-  } else {
-
-    if ($('.wrapper').hasClass('throb')) {
-      $('.wrapper').removeClass('throb');
-    }
-
-    rosesStarted = false;
-
-  }
-
 }
-	function toggleMusic(){
 
-    const music =
-      document.getElementById("bgMusic");
-
-    const icon =
-      document.getElementById("playIcon");
+function toggleMusic(){
 
     if(music.paused){
 
         music.play();
 
-        icon.innerHTML = "⏸";
+        playBtn.innerHTML="⏸";
 
     }else{
 
         music.pause();
 
-        icon.innerHTML = "▶";
+        playBtn.innerHTML="▶";
 
     }
+}
 
+music.addEventListener(
+"timeupdate",
+()=>{
+
+    progress.value =
+    (music.currentTime /
+    music.duration) * 100 || 0;
+
+    document
+    .getElementById("current")
+    .textContent =
+    formatTime(
+      music.currentTime
+    );
+
+});
+
+music.addEventListener(
+"loadedmetadata",
+()=>{
+
+document
+.getElementById("duration")
+.textContent=
+formatTime(
+music.duration
+);
+
+});
+
+progress.addEventListener(
+"input",
+()=>{
+
+music.currentTime=
+(progress.value/100)
+* music.duration;
+
+});
+
+function formatTime(sec){
+
+    let min =
+    Math.floor(sec/60);
+
+    let s =
+    Math.floor(sec%60);
+
+    if(s<10) s="0"+s;
+
+    return min+":"+s;
+}
+
+function createPetal(){
+
+    const petal =
+    document.createElement("div");
+
+    petal.className=
+    "petal";
+
+    petal.innerHTML=
+    "🌹";
+
+    petal.style.left=
+    Math.random()*
+    window.innerWidth+"px";
+
+    petal.style.fontSize=
+    (20+Math.random()*25)
+    +"px";
+
+    petal.style.animationDuration=
+    (5+Math.random()*4)
+    +"s";
+
+    document.body
+    .appendChild(petal);
+
+    setTimeout(
+    ()=>petal.remove(),
+    10000);
+}
+
+function startRoseRain(){
+
+    let count=0;
+
+    const rain=
+    setInterval(()=>{
+
+        createPetal();
+
+        count++;
+
+        if(count>=420){
+
+            clearInterval(rain);
+
+        }
+
+    },100);
 }
 
 </script>
+
+</body>
+</html>
+```
+
 
 </body>
 </html>
