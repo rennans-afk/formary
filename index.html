@@ -239,8 +239,7 @@ function startRoseRain() {
  music.pause();
 	music.currentTime = 0;
 
-	document.getElementById("playIcon")
-		.innerHTML = "▶";
+
 
 }
 
@@ -271,8 +270,7 @@ function check() {
 
 	music.play();
 
-	document.getElementById("playIcon")
-	.innerHTML = "⏸";
+
 
 setTimeout(() => {
 
@@ -293,29 +291,7 @@ setTimeout(() => {
   }
 
 }
-	function toggleMusic(){
-
-    const music =
-      document.getElementById("bgMusic");
-
-    const icon =
-      document.getElementById("playIcon");
-
-    if(music.paused){
-
-        music.play();
-
-        icon.innerHTML = "⏸";
-
-    }else{
-
-        music.pause();
-
-        icon.innerHTML = "▶";
-
-    }
-
-}
+	
 
 </script>
 
